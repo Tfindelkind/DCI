@@ -1,0 +1,39 @@
+## create user-data and meta-data files that will be used
+## to modify image on first boot
+cat << EOF > meta-data
+instance-id: iid-NutanixCE-backup
+network-interfaces: |
+ auto eth0
+ iface eth0 inet static 
+ address 192.168.178.201  
+ network 192.168.178.0 
+ netmask 255.255.255.0  
+ broadcast 192.168.178.255  
+ gateway 192.168.178.1
+local-hostname: NTNXCE-BACKUP  
+EOF
+
+cat << EOF > user-data
+#cloud-config
+output: {all: '| tee -a /var/log/cloud-init-output.log'}
+package_upgrade: true
+password: nutanix/4u
+chpasswd: { expire: False }
+ssh_pwauth: True
+bootcmd: 
+- echo "nameserver 192.168.178.1" | sudo tee -a /etc/resolvconf/resolv.conf.d/head 
+- sudo resolvconf -u 
+runcmd:
+- sudo ifup eth0
+- sudo apt-get install apt-transport-https ca-certificates
+- sudo sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+- echo deb https://apt.dockerproject.org/repo ubuntu-trusty main > /etc/apt/sources.list.d/docker.list
+- sudo apt-get update
+- sudo apt-get install -y linux-image-extra-$(uname -r)
+- sudo apt-get install -y docker-engine
+- sudo service docker start
+final_message: "The system is finally up, after $UPTIME seconds"
+EOF
+
+## create a disk to attach with some user-data and meta-data
+genisoimage -output seed.iso -volid cidata -joliet -rock user-data meta-data
