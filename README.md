@@ -8,3 +8,7 @@ So basically it only helps to store predefined configs which I hope will help ot
 Prebuild recipes:
 
 1. NTNX-AVM - The Nutanix Automation VM is a cloud image based on Ubuntu with a fixed IP and ready to use for scripting 
+
+
+Future:
+In the future this bash script should deploy the cloud images to a cloud platform like Nutanix, AWS, Azure, VMware, and so on. This may be difficult because bash may be not the best scripting language for this task.
