@@ -5,6 +5,11 @@ It makes use of recipes which are defined before used. The recipes are simple te
 
 So basically it only helps to store predefined configs which I hope will help others as well as examples to create their own.
 
+Installing
+
+# make sure genisoimage is installed (Ubuntu)
+sudo apt-get install genisoimage
+
 Prebuild recipes:
 
 1. NTNX-AVM - The Nutanix Automation VM is a cloud image based on Ubuntu with a fixed IP and ready to use for scripting 
