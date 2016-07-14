@@ -11,4 +11,4 @@ Prebuild recipes:
 
 
 Future:
-In the future this bash script should deploy the cloud images to a cloud platform like Nutanix, AWS, Azure, VMware, and so on. This may be difficult because bash may be not the best scripting language for this task.
+In the future this bash script should deploy the cloud images directly to a cloud platform like Nutanix, AWS, Azure, VMware, and so on. This may be difficult because bash may be not the best scripting language for this task.
