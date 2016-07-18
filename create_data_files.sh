@@ -21,7 +21,6 @@
 #
 # ---------------------------------------------------------------------------- #
 
-<<<<<<< HEAD
 LOGDIR=""
 RECIPE_FOLDER="recipes"
 VALID_RECIPE=0
@@ -91,7 +90,3 @@ fi
 
 
 
-=======
-## create a disk to attach with some user-data and meta-data
-genisoimage -output seed.iso -volid cidata -joliet -rock user-data meta-data
->>>>>>> 838a27de31d94ad7ff5645cb635522ab1aa4d499
