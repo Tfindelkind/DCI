@@ -1,14 +1,19 @@
 #cloud-config
 output: {all: '| tee -a /var/log/cloud-init-output.log'}
 package_upgrade: true
+user: nutanix
 password: nutanix/4u
-chpasswd: { expire: False }
+chpasswd: {expire: False}
 ssh_pwauth: True
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC0+eWepRxkLoG6BZkakO8n5UAL6/jOtEBtwtnlTRhPPh11RWatH5ShHXMP6347lN9HsLuhthRGk4PKeGw1AMWnQdalAaoUK8zaulwrC+bZ+AR4bsRdLL0/ebFE/t6mQbwTvGRtOSrF2JaWiT0WG4JYiaSbfeflOlNWt53GifyafvGLxrqRn7xnVpw2O9XxTcon4kd0yZ/Wvcfh8SlaNOmqAuw1xNAKb9boieDZisqR4+TVIQdKuCWt3M9B00DOASvmLVvmXowKc7J5oH9ivj6megDfe6o6MxVxD4RUfsI4bDZ3GQSkCRRA1zU/McIWgy/CyEqL+VOtVARXsjt4amvEepJiEwhXu87qRI3nPE4vR8l8L9y9gcRT8HPOKup4AlvtRDvdoagZAVHJXYusmJ5TrOgr2LYWGv5fx84LaTu1UTZUmqF3oEdteJrlOjNFlndrNWXNclu/UYsjEHbtsF+Jh5rxHIHXebi+bRyfzQDdGUwsDh2oN0I84tVBF+FngVQPYWicDiqURwZILHR6PA/JPnm7pvB0Lg80NBL873WPL4pmfvdwp/ruCegMyVY/W9XKaQEGtCZOG4L4bv1URWtLX/bmSvP3IAsaCWYEeOQu2xoJMiQiBxia3Pnb/MF/dgNRYXKmTetVUBkCIXUxzLgwGDJCyUaDtrJikLFsACj9fQ== thomas@thomas-findelkind.de    
 bootcmd: 
+- ifdown eth0
+- ifup eth0
 - echo "nameserver 192.168.178.1" | sudo tee -a /etc/resolvconf/resolv.conf.d/head 
 - sudo resolvconf -u 
 runcmd:
-- sudo apt-get update
+- sudo yum update
 - sudo curl -O https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz
 - sudo tar -xvf go1.6.linux-amd64.tar.gz
 - sudo mv go /usr/local

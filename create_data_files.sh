@@ -74,7 +74,7 @@ if [ "$1" = "--recipe" ]; then
      echo "Using recipe: $2 to create seed.iso"
      echo "REMEMBER to edit settings in ./$RECIPE_FOLDER/$RECIPE/user-data ./$RECIPE_FOLDER/$RECIPE/meta-data for your environment"
      ## create seed.iso disk to attach with cloud image
-	 genisoimage -output seed.iso -volid cidata -joliet -rock ./$RECIPE_FOLDER/$RECIPE/user-data ./$RECIPE_FOLDER/$RECIPE/meta-data	
+	 genisoimage -output seed.iso -V cidata -r -J ./$RECIPE_FOLDER/$RECIPE/meta-data ./$RECIPE_FOLDER/$RECIPE/user-data	
    fi  
 elif [ "$1" = "--list" ]; then
   check_all_valid_recipe  

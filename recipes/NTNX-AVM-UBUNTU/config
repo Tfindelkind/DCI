@@ -1,0 +1,4 @@
+name="NTNX-AVM-UBUNTU"
+desc="+Golang 1.6"
+cloud_image="Ubuntu14.04"
+
