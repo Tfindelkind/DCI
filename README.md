@@ -6,6 +6,7 @@ It makes use of recipes which are defined before used. The recipes are simple te
 # Installing
 
 make sure genisoimage and git is installed (Ubuntu)
+
 sudo apt-get install genisoimage
 sudo apt-get install git
 
