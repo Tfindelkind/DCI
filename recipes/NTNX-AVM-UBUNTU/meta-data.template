@@ -1,0 +1,10 @@
+instance-id: iid-NTNX-AVM-NAME
+network-interfaces: |
+ auto eth0
+ iface eth0 inet static 
+ address NTNX-AVM-IP 
+ network NTNX-AVM-NW
+ netmask NTNX-AVM-MASK
+ broadcast NTNX-AVM-BC  
+ gateway NTNX-AVM-GW
+local-hostname: NTNX-AVM-NAME 
