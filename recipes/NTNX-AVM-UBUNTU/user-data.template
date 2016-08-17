@@ -34,5 +34,5 @@ runcmd:
 - sudo tar -zxvf VMware-vSphere-CLI-5.5.0-1384587.x86_64.tar.gz
 - sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 gcc-multilib build-essential gcc uuid uuid-dev perl libssl-dev perl-doc liburi-perl libxml-libxml-perl libcrypt-ssleay-perl
 - sudo bash -c "yes | sudo PAGER=cat vmware-vsphere-cli-distrib/vmware-install.pl default"
-- final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"
+final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"
 
