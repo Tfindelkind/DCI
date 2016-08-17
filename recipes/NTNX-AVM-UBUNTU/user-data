@@ -7,15 +7,32 @@ chpasswd: { expire: False}
 ssh_pwauth: True
 bootcmd: 
 - echo "nameserver 192.168.178.1" | sudo tee -a /etc/resolvconf/resolv.conf.d/head 
+- echo "192.168.178.200   NTNX-AVM" | sudo tee -a /etc/hosts
 - sudo resolvconf -u 
 runcmd:
 - sudo apt-get update
 - sudo curl -O https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz
 - sudo tar -xvf go1.6.linux-amd64.tar.gz
 - sudo mv go /usr/local
-- sudo echo "export PATH=$PATH:/usr/local/go/bin" >> /home/ubuntu/.profile
+- sudo echo "export PATH=\$PATH:/usr/local/go/bin" >> /home/nutanix/.profile
 - sudo apt-get install -y git
-- sudo curl https://github.com/vmware/govmomi/releases/download/v0.8.0/govc_linux_amd64.gz | gzip -d > /usr/local/bin/govc
-- sudo chmod +x /usr/local/bin/govc
-final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"
+- sudo mkdir /home/nutanix/work
+- sudo chown nutanix:nutanix /home/nutanix/work
+- sudo echo "export GOPATH=/home/nutanix/work" >> /home/nutanix/.profile
+- sudo su -l nutanix bash -c 'go get github.com/vmware/govmomi/govc'
+- sudo echo "export GOVC_URL='https://root:nutanix/4u@192.168.178.80/sdk'" >> /home/nutanix/.profile
+- sudo echo "export PATH=\$PATH:\$GOPATH/bin" >> /home/nutanix/.profile
+- sudo add-apt-repository ppa:webupd8team/java -y
+- sudo apt-get update
+- sudo bash -c "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections"
+- sudo apt-get install -y oracle-java8-installer
+- sudo curl -L "http://tfindelkind.com/?smd_process_download=1&download_id=1134" > ncli.zip
+- sudo apt-get install -y unzip
+- sudo unzip ncli.zip -d /usr/local/ncli
+- sudo echo "export PATH=\$PATH:/usr/local/ncli" >> /home/nutanix/.profile
+- sudo curl -L "http://tfindelkind.com/?smd_process_download=1&download_id=1136" > VMware-vSphere-CLI-5.5.0-1384587.x86_64.tar.gz
+- sudo tar -zxvf VMware-vSphere-CLI-5.5.0-1384587.x86_64.tar.gz
+- sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 gcc-multilib build-essential gcc uuid uuid-dev perl libssl-dev perl-doc liburi-perl libxml-libxml-perl libcrypt-ssleay-perl
+- sudo bash -c "yes | sudo PAGER=cat vmware-vsphere-cli-distrib/vmware-install.pl default"
+- final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"
 

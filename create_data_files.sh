@@ -64,6 +64,52 @@ check_valid_recipe()
    fi
 }
 
+create_userdata()
+{
+	if [ -f "./$RECIPE_FOLDER/$RECIPE/config" ]; then
+	# read config file (key/values) into two array 
+	keys=()
+	values=()
+	while IFS='=' read -r key value
+	do
+		keys+=("$key")
+		# remove the quotes when adding
+		values+=("${value//\"}")
+	done < "./$RECIPE_FOLDER/$RECIPE/config"
+	
+	cp ./$RECIPE_FOLDER/$RECIPE/user-data.template ./$RECIPE_FOLDER/$RECIPE/user-data
+	
+	# Start with 3rd line. not water proof but should work	
+	for((i=4;i<${#keys[@]}-1;i++))
+	do
+		sed -i "s/${keys[i]}/${values[i]}/g" ./$RECIPE_FOLDER/$RECIPE/user-data
+	done
+  fi	
+}
+
+create_metadata()
+{
+	if [ -f "./$RECIPE_FOLDER/$RECIPE/config" ]; then
+	# read config file (key/values) into two array 
+	keys=()
+	values=()
+	while IFS='=' read -r key value
+	do
+		keys+=("$key")
+		# remove the quotes when adding
+		values+=("${value//\"}")
+	done < "./$RECIPE_FOLDER/$RECIPE/config"
+	
+	cp ./$RECIPE_FOLDER/$RECIPE/meta-data.template ./$RECIPE_FOLDER/$RECIPE/meta-data
+	
+	# Start with 3rd line. not water proof but should work	
+	for((i=4;i<${#keys[@]}-1;i++))
+	do
+		sed -i "s/${keys[i]}/${values[i]}/g" ./$RECIPE_FOLDER/$RECIPE/meta-data
+	done
+  fi	
+}
+
 if [ "$1" = "--recipe" ]; then
    RECIPE=$2
    check_valid_recipe
@@ -71,8 +117,10 @@ if [ "$1" = "--recipe" ]; then
      echo "Recipe: $2 is not valid"    
      exit
    else
+	 create_userdata
+	 create_metadata
      echo "Using recipe: $2 to create seed.iso"
-     echo "REMEMBER to edit settings in ./$RECIPE_FOLDER/$RECIPE/user-data ./$RECIPE_FOLDER/$RECIPE/meta-data for your environment"
+     echo "REMEMBER to edit settings in ./$RECIPE_FOLDER/$RECIPE/config for your environment"
      ## create seed.iso disk to attach with cloud image
 	 genisoimage -output seed.iso -V cidata -r -J ./$RECIPE_FOLDER/$RECIPE/meta-data ./$RECIPE_FOLDER/$RECIPE/user-data	
    fi  
@@ -82,6 +130,7 @@ elif [ "$1" = "--list" ]; then
 else
   echo "  USAGE:
     `/.create_data_files.sh` [options] [value]
+    change config file for personal settings like IP,Name...
 
   Options:
     --recipe: specifies the recipe
