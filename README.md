@@ -24,7 +24,7 @@ Change the config files for your needs ->  /recipes/NTNX-AVM/config to set IP, N
 
 ./create_data_files --list        -> will list all valid recipes
 
-./creae_data_files --recipe NTNX-AVM  -> will create seed.iso for the Nutanix Automation VM based on Centos 7   
+./create_data_files --recipe NTNX-AVM  -> will create seed.iso for the Nutanix Automation VM based on Centos 7   
 
 
 # Future
