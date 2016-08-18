@@ -87,6 +87,12 @@ create_userdata()
   fi	
 }
 
+genfile()
+{
+  cp ./$RECIPE_FOLDER/$RECIPE/user-data ./$RECIPE_FOLDER/$RECIPE/cloud-init
+  cat./$RECIPE_FOLDER/$RECIPE/meta-data >> ./$RECIPE_FOLDER/$RECIPE/cloud-init
+}
+
 create_metadata()
 {
 	if [ -f "./$RECIPE_FOLDER/$RECIPE/config" ]; then
@@ -119,6 +125,9 @@ if [ "$1" = "--recipe" ]; then
    else
 	 create_userdata
 	 create_metadata
+	 if [ "$2" = "--genfile" ]; then
+		genfile
+	 fi
      echo "Using recipe: $2 to create seed.iso"
      echo "REMEMBER to edit settings in ./$RECIPE_FOLDER/$RECIPE/config for your environment"
      ## create seed.iso disk to attach with cloud image
@@ -133,8 +142,9 @@ else
     change config file for personal settings like IP,Name...
 
   Options:
-    --recipe: specifies the recipe
-    --list:   list all available recipes"
+    --recipe  		specifies the recipe
+    --list    		list all available recipes
+    --genfile		generates cloud-init file based on meta-data and user-data" 		
 fi
 
 
