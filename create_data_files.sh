@@ -89,8 +89,8 @@ create_userdata()
 
 genfile()
 {
-  cp ./$RECIPE_FOLDER/$RECIPE/user-data ./$RECIPE_FOLDER/$RECIPE/cloud-init
-  cat./$RECIPE_FOLDER/$RECIPE/meta-data >> ./$RECIPE_FOLDER/$RECIPE/cloud-init
+  cp ./$RECIPE_FOLDER/$RECIPE/user-data ./cloud-init
+  cat ./$RECIPE_FOLDER/$RECIPE/meta-data >> ./cloud-init
 }
 
 create_metadata()
@@ -125,7 +125,7 @@ if [ "$1" = "--recipe" ]; then
    else
 	 create_userdata
 	 create_metadata
-	 if [ "$2" = "--genfile" ]; then
+	 if [ "$3" = "--genfile" ]; then
 		genfile
 	 fi
      echo "Using recipe: $2 to create seed.iso"
