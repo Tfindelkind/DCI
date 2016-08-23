@@ -116,6 +116,17 @@ create_metadata()
   fi	
 }
 
+## MAIN block
+
+case $OSTYPE in 
+	darwin* ) 
+		mac=true ;; 
+	linux* ) 				
+		if [ -f "/etc/redhat-release" ]; then linux="redhat"; fi 
+		if [ -f "/etc/debian_version" ]; then linux="debian"; fi 		
+		;;
+esac
+
 if [ "$1" = "--recipe" ]; then
    RECIPE=$2
    check_valid_recipe
@@ -131,21 +142,44 @@ if [ "$1" = "--recipe" ]; then
      echo "Using recipe: $2 to create seed.iso"
      echo "REMEMBER to edit settings in ./$RECIPE_FOLDER/$RECIPE/config for your environment"
      ## create seed.iso disk to attach with cloud image
-	 genisoimage -output seed.iso -V cidata -r -J ./$RECIPE_FOLDER/$RECIPE/meta-data ./$RECIPE_FOLDER/$RECIPE/user-data	
+     
+     ## debian style
+     if [ $linux == "debian" ]; then
+		if command -v genisoimage 2>/dev/null; then
+			genisoimage -output seed.iso -V cidata -r -J ./$RECIPE_FOLDER/$RECIPE/meta-data ./$RECIPE_FOLDER/$RECIPE/user-data	
+		else
+			echo "genisoimage not installed"	
+		fi			
+	 fi
+	 
+	 ## redhat style
+	 if [ $linux == "redhat" ]; then
+		if command -v mkisofs 2>/dev/null; then
+			mkisofs -output seed.iso -V cidata -r -J ./$RECIPE_FOLDER/$RECIPE/meta-data ./$RECIPE_FOLDER/$RECIPE/user-data	
+		else
+			echo "mkisofs not installed. Try to install it and continue"
+			yum install -y mkisofs
+			mkisofs -output seed.iso -V cidata -r -J ./$RECIPE_FOLDER/$RECIPE/meta-data ./$RECIPE_FOLDER/$RECIPE/user-data	
+		fi			
+	 fi
+	 
+	 
    fi  
 elif [ "$1" = "--list" ]; then
   check_all_valid_recipe  
 
 else
-  echo "  USAGE:
-    `/.create_data_files.sh` [options] [value]
+cat << EOF
+  USAGE:
+    create_data_files.sh [options] [value]
     change config file for personal settings like IP,Name...
 
   Options:
     --recipe  		specifies the recipe
     --list    		list all available recipes
-    --genfile		generates cloud-init file based on meta-data and user-data" 		
+    --genfile		generates cloud-init file based on meta-data and user-data"
+EOF
+  
 fi
-
 
 
