@@ -158,7 +158,7 @@ if [ "$1" = "--recipe" ]; then
 			mkisofs -output seed.iso -V cidata -r -J ./$RECIPE_FOLDER/$RECIPE/meta-data ./$RECIPE_FOLDER/$RECIPE/user-data	
 		else
 			echo "mkisofs not installed. Try to install it and continue"
-			yum install -y mkisofs
+			sudo yum install -y mkisofs
 			mkisofs -output seed.iso -V cidata -r -J ./$RECIPE_FOLDER/$RECIPE/meta-data ./$RECIPE_FOLDER/$RECIPE/user-data	
 		fi			
 	 fi
