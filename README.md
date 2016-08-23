@@ -7,9 +7,13 @@ It makes use of recipes which are defined before used. The recipes are simple te
 
 Supported OSes:
   UBUNTU
+  
   DEBIAN
+  
   MAC OS
+  
   REDHAT 
+  
   CENTOS
 
 Make sure git is installed 
