@@ -5,13 +5,18 @@ It makes use of recipes which are defined before used. The recipes are simple te
 
 # Installing
 
-make sure genisoimage and git is installed (Ubuntu)
+Supported OSes:
+  UBUNTU
+  DEBIAN
+  MAC OS
+  REDHAT 
+  CENTOS
 
-sudo apt-get install genisoimage
-
-sudo apt-get install git
+Make sure git is installed 
 
 git clone https://github.com/Tfindelkind/DCI
+
+DCI makes use of genisoiamge/mkisofs and tries to install it if not installed
 
 Prebuild recipes:
 
