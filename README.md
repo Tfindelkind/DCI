@@ -19,7 +19,7 @@ Supported OSes:
 
 Make sure "git" is installed 
 
-git clone https://github.com/Tfindelkind/DCI
+# git clone https://github.com/Tfindelkind/DCI
 
 DCI makes use of genisoiamge/mkisofs and tries to install it if not installed
 
