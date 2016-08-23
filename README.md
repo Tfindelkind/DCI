@@ -6,6 +6,7 @@ It makes use of recipes which are defined before used. The recipes are simple te
 # Installing
 
 Supported OSes:
+
   UBUNTU
   
   DEBIAN
