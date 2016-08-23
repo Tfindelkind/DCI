@@ -17,7 +17,7 @@ Supported OSes:
   
   CENTOS
 
-Make sure git is installed 
+Make sure "git" is installed 
 
 git clone https://github.com/Tfindelkind/DCI
 
