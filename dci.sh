@@ -95,8 +95,13 @@ create_userdata()
 	
 	# Replace all variables	
 	for((i=5;i<${#keys[@]}-1;i++))
-	do		
-		sed -i "s/${keys[i]}/${values[i]}/g" ./$RECIPE_FOLDER/$RECIPE/user-data
+	do	
+	    if [ $os == "debian" ] || [ $os == "redhat" ]; then 	
+		 sed -i "s/${keys[i]}/${values[i]}/g" ./$RECIPE_FOLDER/$RECIPE/user-data
+		fi
+		if [ $os == "mac" ]; then
+		 sed -i '' "s/${keys[i]}/${values[i]}/g" ./$RECIPE_FOLDER/$RECIPE/user-data
+		fi 
 	done
   fi	
 }
@@ -119,7 +124,12 @@ create_metadata()
 	# Replace all variables	
 	for((i=5;i<${#keys[@]}-1;i++))
 	do		
-		sed -i "s/${keys[i]}/${values[i]}/g" ./$RECIPE_FOLDER/$RECIPE/meta-data
+		if [ $os == "debian" ] || [ $os == "redhat" ]; then 	
+		 sed -i "s/${keys[i]}/${values[i]}/g" ./$RECIPE_FOLDER/$RECIPE/meta-data
+		fi
+		if [ $os == "mac" ]; then
+		 sed -i '' "s/${keys[i]}/${values[i]}/g" ./$RECIPE_FOLDER/$RECIPE/meta-data
+		fi 		
 	done
   fi	
 }
@@ -325,6 +335,21 @@ else
  ## download cloud vm
 	 
  download_cloud_image
+ 
+ ## download deploy_cloud_vm
+ 
+ if [ ! -f "./deploy_cloud_vm" ]; then 
+ 
+  if [ $os == "debian" ] || [ $os == "redhat" ]; then 	
+   curl -L "https://github.com/Tfindelkind/automation/releases/download/v0.9-beta/deploy_cloud_vm_linux" >> ./deploy_cloud_vm  
+  fi
+  if [ $os == "mac" ]; then
+   curl -L "https://github.com/Tfindelkind/automation/releases/download/v0.9-beta/deploy_cloud_vm_mac" >> ./deploy_cloud_vm
+  fi 		
+  chmod +x  ./deploy_cloud_vm
+ fi
+ 
+ 
 	
  ## deploy_cloud_vm
  ## TODO download deploy_cloud_vm binary for os
