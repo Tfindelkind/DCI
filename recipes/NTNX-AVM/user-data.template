@@ -1,8 +1,8 @@
 #cloud-config
 output: {all: '| tee -a /var/log/cloud-init-output.log'}
 package_upgrade: true
-user: nutanix
-password: nutanix/4u
+user: VM-USER
+password: VM-PASSWORD
 chpasswd: { expire: False}
 ssh_pwauth: True
 write_files:
@@ -18,11 +18,11 @@ runcmd:
 - echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile.d/go.sh
 - yum install -y git
 - mkdir /home/nutanix/work
-- chown nutanix:nutanix /home/nutanix/work
-- echo "export GOPATH=/home/nutanix/work" >> /etc/profile.d/go.sh
-- su -l nutanix bash -c 'go get github.com/vmware/govmomi/govc'
-- sudo echo "export GOVC_URL='https://vcenter_user:vcenter_password@vcenter_ip/sdk'" >> /etc/profile.d/govc.sh
-- sudo echo "export PATH=\$PATH:\$GOPATH/bin" >> /etc/profile.d/go.sh
+- chown VM-USER:VM-USER /home/VM-USER/work
+- echo "export GOPATH=/home/VM-USER/work" >> /etc/profile.d/go.sh
+- echo "export PATH=\$PATH:\$GOPATH/bin" >> /etc/profile.d/go.sh
+- su -l VM-USER bash -c 'go get github.com/vmware/govmomi/govc'
+- echo "export GOVC_URL='https://VCENTER_USER:VCENTER_PASSWORD@VCENTER_IP/sdk'" >> /etc/profile.d/govc.sh
 - 'curl -L --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jre-8u60-linux-x64.rpm" > jre-8u60-linux-x64.rpm'
 - yum localinstall -y jre-8u60-linux-x64.rpm
 - curl -L "http://tfindelkind.com/?smd_process_download=1&download_id=1134" > ncli.zip
@@ -35,5 +35,6 @@ runcmd:
 - yum install -y perl-XML-LibXML perl-XML-LibXML-Common perl-XML-SAX perl-XML-DOM perl-XML-Parser perl-XML-RegExp perl-Crypt-SSLeay perl-Data-Dump perl-Class-MethodMaker perl-Compress-Raw-Zlib
 - yum install libuuid-devel libxml2-devel 
 - bash -c "yes | sudo PAGER=cat vmware-vsphere-cli-distrib/vmware-install.pl default"
+- su -l VM-USER bash -c 'go get github.com/Tfindelkind/automation/...' 
 final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"
 

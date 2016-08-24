@@ -1,27 +1,27 @@
 #cloud-config
 output: {all: '| tee -a /var/log/cloud-init-output.log'}
 package_upgrade: true
-user: nutanix
-password: nutanix/4u
+user: VM-USER
+password: VM-PASSWORD
 chpasswd: { expire: False}
 ssh_pwauth: True
 bootcmd: 
-- echo "nameserver NTNX-AVM-NS" | sudo tee -a /etc/resolvconf/resolv.conf.d/head 
-- echo "NTNX-AVM-IP NTNX-AVM-NAME" | sudo tee -a /etc/hosts
+- echo "nameserver VM-NS" | sudo tee -a /etc/resolvconf/resolv.conf.d/head 
+- echo "VM-IP VM-NAME" | sudo tee -a /etc/hosts
 - sudo resolvconf -u 
 runcmd:
 - sudo apt-get update
 - sudo curl -O https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz
 - sudo tar -xvf go1.6.linux-amd64.tar.gz
 - sudo mv go /usr/local
-- sudo echo "export PATH=\$PATH:/usr/local/go/bin" >> /home/nutanix/.profile
+- sudo echo "export PATH=\$PATH:/usr/local/go/bin" >> /home/VM-USER/.profile
 - sudo apt-get install -y git
-- sudo mkdir /home/nutanix/work
-- sudo chown nutanix:nutanix /home/nutanix/work
-- sudo echo "export GOPATH=/home/nutanix/work" >> /home/nutanix/.profile
-- sudo su -l nutanix bash -c 'go get github.com/vmware/govmomi/govc'
-- sudo echo "export GOVC_URL='https://vcenter_user:vcenter_password@vcenter_ip/sdk'" >> /home/nutanix/.profile
-- sudo echo "export PATH=\$PATH:\$GOPATH/bin" >> /home/nutanix/.profile
+- sudo mkdir /home/VM-USER/work
+- sudo chown VM-USER:VM-USER /home/VM-USER/work
+- sudo echo "export GOPATH=/home/VM-USER/work" >> /home/VM-USER/.profile
+- sudo su -l VM-USER bash -c 'go get github.com/vmware/govmomi/govc'
+- sudo echo "export GOVC_URL='https://vcenter_user:vcenter_password@vcenter_ip/sdk'" >> /home/VM-USER/.profile
+- sudo echo "export PATH=\$PATH:\$GOPATH/bin" >> /home/VM-USER/.profile
 - sudo add-apt-repository ppa:webupd8team/java -y
 - sudo apt-get update
 - sudo bash -c "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections"
@@ -29,10 +29,11 @@ runcmd:
 - sudo curl -L "http://tfindelkind.com/?smd_process_download=1&download_id=1134" > ncli.zip
 - sudo apt-get install -y unzip
 - sudo unzip ncli.zip -d /usr/local/ncli
-- sudo echo "export PATH=\$PATH:/usr/local/ncli" >> /home/nutanix/.profile
+- sudo echo "export PATH=\$PATH:/usr/local/ncli" >> /home/VM-USER/.profile
 - sudo curl -L "http://tfindelkind.com/?smd_process_download=1&download_id=1136" > VMware-vSphere-CLI-5.5.0-1384587.x86_64.tar.gz
 - sudo tar -zxvf VMware-vSphere-CLI-5.5.0-1384587.x86_64.tar.gz
 - sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 gcc-multilib build-essential gcc uuid uuid-dev perl libssl-dev perl-doc liburi-perl libxml-libxml-perl libcrypt-ssleay-perl
 - sudo bash -c "yes | sudo PAGER=cat vmware-vsphere-cli-distrib/vmware-install.pl default"
+- sudo su -l VM-USER bash -c 'go get github.com/Tfindelkind/automation/...'
 final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"
 
