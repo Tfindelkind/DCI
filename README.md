@@ -25,7 +25,10 @@ Change the config files for your needs ->  /recipes/NTNX-AVM/config to set IP, N
 
 ./dci.sh --list        -> will list all valid recipes
 
-./dci.sh --recipe NTNX-AVM  -> will create seed.iso for the Nutanix Automation VM based on Centos 7   
+Example:
+
+./dci.sh --recipe=NTNX-AVM --host=192.168.178.130 --username=admin --password=nutanix/4u --container=prod --vlan=VLAN0 --vm-name=NTNX-AVM
+
 
 
 # Future
