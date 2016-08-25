@@ -1,5 +1,5 @@
 # DCI
-Deploy Cloud Image - bash scripts which deploy cloud images to Nutanix based on recipes 
+Deploy Cloud Image - bash scripts which deploys cloud images to a Nutanix cluster based on recipes 
 
 It makes use of recipes which are pre-defined. The recipes are simple text files residing in /recipes folder
 MAKE sure you edit the config file with your seetings IP/DNS/USER/PASSWORD...
@@ -12,7 +12,11 @@ Make sure "git" is installed
 
 # git clone https://github.com/Tfindelkind/DCI
 
+# Dependencies
+
+DCI will download the cloud image with is specified in the /recipes folder
 DCI makes use of genisoiamge/mkisofs and tries to install it if not installed
+DCI makes use of github.com/Tfindelkind/automation/deploy_cloud_vm and tries to install it if not installed
 
 Prebuild recipes:
 
@@ -30,6 +34,5 @@ Example:
 ./dci.sh --recipe=NTNX-AVM --host=192.168.178.130 --username=admin --password=nutanix/4u --container=prod --vlan=VLAN0 --vm-name=NTNX-AVM
 
 
-
 # Future
-In the future this bash script should deploy the cloud images directly to different cloud platforms like Nutanix, AWS, Azure, VMware, and so on.
+In the future this bash script should deploy the cloud images directly to different cloud platforms like AWS, Azure, VMware, and so on.

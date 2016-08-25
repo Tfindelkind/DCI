@@ -348,9 +348,7 @@ else
   fi 		
   chmod +x  ./deploy_cloud_vm
  fi
- 
- 
-	
+ 	
  ## deploy_cloud_vm
  ## TODO download deploy_cloud_vm binary for os
  #echo ./deploy_cloud_vm --host $HOST --username $USERNAME --password $PASSWORD --vm-name $VMNAME --container $CONTAINER --vlan $VLAN --debug	
