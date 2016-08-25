@@ -14,7 +14,7 @@ Make sure "git" is installed
 
 # Dependencies
 
-DCI will download the cloud image with is specified in the /recipes folder
+DCI will download the cloud image which is specified in the /recipes folder
 DCI makes use of genisoiamge/mkisofs and tries to install it if not installed
 DCI makes use of github.com/Tfindelkind/automation/deploy_cloud_vm and tries to install it if not installed
 
