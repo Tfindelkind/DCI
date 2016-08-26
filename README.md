@@ -10,7 +10,7 @@ Supported OSes:  UBUNTU / DEBIAN / MAC OS / REDHAT / CENTOS
 
 Download the source code tar.gz file from latest stable release 
 
-unpack the files 
+# unpack the files 
 
 tar -xvzf DCI-0.9a-beta.tar.gz
 
