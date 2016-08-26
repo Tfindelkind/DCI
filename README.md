@@ -8,7 +8,7 @@ MAKE sure you edit the config file with your seetings IP/DNS/USER/PASSWORD...
 
 Supported OSes:  UBUNTU / DEBIAN / MAC OS / REDHAT / CENTOS
 
-Download the tar.gz file from latest stable release 
+Download the source code tar.gz file from latest stable release 
 
 unpack the files 
 
