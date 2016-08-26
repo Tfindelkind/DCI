@@ -8,6 +8,14 @@ MAKE sure you edit the config file with your seetings IP/DNS/USER/PASSWORD...
 
 Supported OSes:  UBUNTU / DEBIAN / MAC OS / REDHAT / CENTOS
 
+Download the tar.gz file from latest stable release 
+
+unpack the files 
+
+tar -xvzf DCI-0.9a-beta.tar.gz
+
+or
+
 Make sure "git" is installed 
 
 # git clone https://github.com/Tfindelkind/DCI
