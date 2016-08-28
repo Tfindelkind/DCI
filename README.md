@@ -1,5 +1,5 @@
 # DCI
-Deploy Cloud Image - bash scripts which deploys cloud images to a Nutanix cluster based on recipes 
+Deploy Cloud Image - bash script which deploys cloud images to a Nutanix cluster based on recipes 
 
 It makes use of recipes which are pre-defined. The recipes are simple text files residing in /recipes folder
 MAKE sure you edit the config file with your seetings IP/DNS/USER/PASSWORD...
