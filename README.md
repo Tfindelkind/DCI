@@ -14,12 +14,6 @@ unpack the files example:
 
 # tar -xvzf DCI-0.9a-beta.tar.gz
 
-or
-
-Make sure "git" is installed 
-
-# git clone https://github.com/Tfindelkind/DCI
-
 # Dependencies
 
 DCI will download the cloud image which is specified in the /recipes folder
