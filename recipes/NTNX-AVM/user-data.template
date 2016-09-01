@@ -12,8 +12,8 @@ write_files:
         Defaults:root !requiretty
 runcmd:
 - yum update
-- curl -O https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz
-- tar -xvf go1.6.linux-amd64.tar.gz
+- curl -O https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz
+- tar -xvf go1.7.linux-amd64.tar.gz
 - mv go /usr/local
 - echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile.d/go.sh
 - yum install -y git
@@ -29,12 +29,11 @@ runcmd:
 - yum install -y unzip
 - unzip ncli.zip -d /usr/local/ncli
 - echo "export PATH=\$PATH:/usr/local/ncli" >> /etc/profile.d/ncli.sh
-- curl -L "http://tfindelkind.com/?smd_process_download=1&download_id=1136" > VMware-vSphere-CLI-5.5.0-1384587.x86_64.tar.gz
-- tar -zxvf VMware-vSphere-CLI-5.5.0-1384587.x86_64.tar.gz
+- curl -L "http://tfindelkind.com/?smd_process_download=1&download_id=1147" > VMware-vSphere-CLI-6.0.0-2503617.x86_64.tar.gz
+- tar -zxvf VMware-vSphere-CLI-6.0.0-2503617.x86_64.tar.gz
 - yum install -y openssl-devel
 - yum install -y perl-XML-LibXML perl-XML-LibXML-Common perl-XML-SAX perl-XML-DOM perl-XML-Parser perl-XML-RegExp perl-Crypt-SSLeay perl-Data-Dump perl-Class-MethodMaker perl-Compress-Raw-Zlib
-- yum install libuuid-devel libxml2-devel 
+- yum install libuuid-devel libxml2-devel
 - bash -c "yes | sudo PAGER=cat vmware-vsphere-cli-distrib/vmware-install.pl default"
-- su -l VM-USER bash -c 'go get github.com/Tfindelkind/automation/...' 
+- su -l VM-USER bash -c 'go get github.com/Tfindelkind/automation/...'
 final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"
-
