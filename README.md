@@ -27,7 +27,7 @@ Prebuild recipes:
 
 # Usage
 
-Change the config files for your needs ->  /recipes/NTNX-AVM/config to set IP, Nameserver etc.
+Change the config files for your needs ->  "/recipes/NTNX-AVM/v1/CentOS7/config" to set IP, Nameserver etc.
 
 ./dci.sh --list        -> will list all valid recipes
 
