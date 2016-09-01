@@ -33,7 +33,7 @@ Change the config files for your needs ->  /recipes/NTNX-AVM/config to set IP, N
 
 Example:
 
-./dci.sh --recipe=NTNX-AVM --host=192.168.178.130 --username=admin --password=nutanix/4u --container=prod --vlan=VLAN0 --vm-name=NTNX-AVM
+./dci.sh --recipe=NTNX-AVM --rv=v1 --ros=CentOS7 --host=192.168.178.130 --username=admin --password=nutanix/4u --container=prod --vlan=VLAN0 --vm-name=NTNX-AVM
 
 
 # Future
