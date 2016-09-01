@@ -68,7 +68,7 @@ check_all_valid_recipe()
 				 setRecipe_Config
  				 check_valid_recipe
  				 if [ $VALID_RECIPE = 1 ]; then
- 				  echo "$RECIPE $RECIPE_VERSION_FOLDER $RECIPE_OS_FOLDER"
+ 				  echo "--recipe=$RECIPE --rv=$RECIPE_VERSION_FOLDER --ros=$RECIPE_OS_FOLDER"
  				 fi
 			done < <(ls $RECIPE_FOLDER/$recipes_ls/$version_ls)
 	  done < <(ls $RECIPE_FOLDER/$recipes_ls)
@@ -117,7 +117,7 @@ create_userdata()
 	cp "$RECIPE_PATH/user-data.template" "$RECIPE_PATH/user-data"
 
 	# Replace all variables
-	for((i=4;i<${#keys[@]}-1;i++))
+	for((i=4;i<${#keys[@]};i++))
 	do
 	    if [ $os == "debian" ] || [ $os == "redhat" ]; then
 		   sed -i "s/${keys[i]}/${values[i]}/g" "$RECIPE_PATH/user-data"
@@ -145,7 +145,7 @@ create_metadata()
 	cp "$RECIPE_PATH/meta-data.template" "$RECIPE_PATH/meta-data"
 
 	# Replace all variables
-	for((i=5;i<${#keys[@]}-1;i++))
+	for((i=4;i<${#keys[@]};i++))
 	do
 		if [ $os == "debian" ] || [ $os == "redhat" ]; then
 		 sed -i "s/${keys[i]}/${values[i]}/g" "$RECIPE_PATH/meta-data"
