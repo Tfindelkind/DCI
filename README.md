@@ -12,7 +12,7 @@ Download the source code tar.gz file from latest stable release
 
 unpack the files example:
 
-# tar -xvzf DCI-0.9a-beta.tar.gz
+# tar -xvzf DCI-1.0-stable.tar.gz
 
 # Dependencies
 
