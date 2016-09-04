@@ -185,6 +185,7 @@ download_cloud_image()
 		  mkdir ./$IMAGE_FOLDER
 		 fi
 		 if [ ! -f "./$IMAGE_FOLDER/$cloud_image" ]; then
+      echo "Download Cloud image..."
 		  curl -L "${values[i]}" >> ./$IMAGE_FOLDER/$cloud_image
 		 fi
 		fi
@@ -397,6 +398,7 @@ else
  ## download deploy_cloud_vm
 
  if [ ! -f "./deploy_cloud_vm" ]; then
+   echo "Download deploy_cloud_vm..."
 
   if [ $os == "debian" ] || [ $os == "redhat" ]; then
    curl -L $DEPLOY_CLOUD_VM_LINUX_URL >> ./deploy_cloud_vm
