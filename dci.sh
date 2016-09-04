@@ -22,6 +22,8 @@
 # ---------------------------------------------------------------------------- #
 
 LOGDIR=""
+DEPLOY_CLOUD_VM_MAC_URL="https://github.com/Tfindelkind/automation/releases/download/v1.0-stable/deploy_cloud_vm_mac"
+DEPLOY_CLOUD_VM_LINUX_URL="https://github.com/Tfindelkind/automation/releases/download/v1.0-stable/deploy_cloud_vm_linux"
 RECIPE_FOLDER="recipes"
 RECIPE_CONFIG=""
 RECIPE_PATH=""
@@ -397,10 +399,10 @@ else
  if [ ! -f "./deploy_cloud_vm" ]; then
 
   if [ $os == "debian" ] || [ $os == "redhat" ]; then
-   curl -L "https://github.com/Tfindelkind/automation/releases/download/v0.9-beta/deploy_cloud_vm_linux" >> ./deploy_cloud_vm
+   curl -L $DEPLOY_CLOUD_VM_LINUX_URL >> ./deploy_cloud_vm
   fi
   if [ $os == "mac" ]; then
-   curl -L "https://github.com/Tfindelkind/automation/releases/download/v0.9-beta/deploy_cloud_vm_mac" >> ./deploy_cloud_vm
+   curl -L $DEPLOY_CLOUD_VM_MAC_URL >> ./deploy_cloud_vm
   fi
   chmod +x  ./deploy_cloud_vm
  fi
