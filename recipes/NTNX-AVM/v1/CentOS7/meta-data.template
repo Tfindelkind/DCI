@@ -6,6 +6,7 @@ network-interfaces: |
  netmask VM-MASK  
  broadcast VM-BC  
  gateway VM-GW
+ dns-nameservers VM-NS
 bootcmd: 
 - ifdown eth0
 - ifup eth0 
