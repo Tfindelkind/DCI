@@ -7,4 +7,5 @@ network-interfaces: |
  netmask VM-MASK
  broadcast VM-BC  
  gateway VM-GW
+ dns-nameservers VM-NS
 local-hostname: VM-NAME 
