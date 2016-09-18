@@ -37,5 +37,7 @@ runcmd:
 - bash -c "yes | sudo PAGER=cat vmware-vsphere-cli-distrib/vmware-install.pl default"
 - curl -L "https://github.com/dshearer/jobber/releases/download/v1.1/jobber-1.1-1.el7.centos.x86_64.rpm" > jobber-1.1-1.el7.centos.x86_64.rpm
 - rpm -Uhv jobber-1.1-1.el7.centos.x86_64.rpm
+- systemctl start jobber
 - su -l VM-USER bash -c 'go get github.com/Tfindelkind/automation/...'
+- su -l VM-USER bash -c '~/work/src/github.com/Tfindelkind/automation/NTNX-AVM/install.sh'
 final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"

@@ -202,18 +202,18 @@ cat << EOF
     change config file for personal settings like IP,Name...
 
   Options:
-    --recipe  		specifies the recipe
-		--rv				  spefifies the recipe version
-		--ros 				specifies the recipe OS
-    --list    		list all available recipes
-    --host				specifies the Nutanix cluster IP or CVM IP
-    --username		specifies the PRISM user
-    --password	  spefifies the users PASSWORD
-    --vm-name			spefifies the name of the VM
-    --container	  specifies the container where the VM will be stored
-    --vlan			  spefifies the VLAN where the VM will be connected to
-    --help				list this help
-    --version			list the version
+    --recipe      specifies the recipe
+    --rv          spefifies the recipe version
+    --ros         specifies the recipe OS
+    --list        list all available recipes
+    --host        specifies the Nutanix cluster IP or CVM IP
+    --username    specifies the PRISM user
+    --password    spefifies the users PASSWORD
+    --vm-name     spefifies the name of the VM
+    --container   specifies the container where the VM will be stored
+    --vlan        spefifies the VLAN where the VM will be connected to
+    --help        list this help
+    --version     shows the version of dci.sh
 EOF
 }
 
@@ -302,6 +302,7 @@ fi
 
 if [ $RECIPE = 0 ]; then
  echo "--recipe is mandatory"
+ printHelp
  exit
 fi
 
