@@ -34,7 +34,6 @@ runcmd:
 - sudo tar -zxvf VMware-vSphere-CLI-6.0.0-2503617.x86_64.tar.gz
 - sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 gcc-multilib build-essential gcc uuid uuid-dev perl libssl-dev perl-doc liburi-perl libxml-libxml-perl libcrypt-ssleay-perl
 - sudo bash -c "yes | sudo PAGER=cat vmware-vsphere-cli-distrib/vmware-install.pl default"
-- sudo apt-get -f -y install gdebi
 - sudo curl -L "https://github.com/dshearer/jobber/releases/download/v1.1/jobber_1.1-1_amd64.deb" > jobber_1.1-1_amd64.deb
 - sudo dpkg -i --force-all jobber_1.1-1_amd64.deb
 - sudo su -l VM-USER bash -c 'go get github.com/Tfindelkind/automation/...'
