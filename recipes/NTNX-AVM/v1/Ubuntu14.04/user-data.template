@@ -37,5 +37,5 @@ runcmd:
 - sudo curl -L "https://github.com/dshearer/jobber/releases/download/v1.1/jobber_1.1-1_amd64.deb" > jobber_1.1-1_amd64.deb
 - sudo dpkg -i --force-all jobber_1.1-1_amd64.deb
 - sudo su -l VM-USER bash -c 'go get github.com/Tfindelkind/automation/...'
-- sudo su -l VM-USER bash -c 'cd ~/work/src/github.com/Tfindelkind/automation/NTNX-AVM; install.sh'
+- sudo su -l VM-USER bash -c 'cd ~/work/src/github.com/Tfindelkind/automation/NTNX-AVM; ./install.sh'
 final_message: "The NTNX-AVM is finally up, after $UPTIME seconds"
