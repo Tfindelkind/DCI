@@ -1,0 +1,25 @@
+#cloud-config
+output: {all: '| tee -a /var/log/cloud-init-output.log'}
+package_upgrade: true
+user: VM-USER
+password: VM-PASSWORD
+chpasswd: { expire: False}
+ssh_pwauth: True
+write_files:
+-   path: /etc/sudoers.d/999-DCI-cloud-init-requiretty
+    permissions: 440
+    content: |
+        Defaults:root !requiretty
+runcmd:
+- sudo yum update
+- sudo sh -c 'echo "DOCKER-EE-DOWNLOAD" > /etc/yum/vars/dockerurl'
+- sudo yum install -y yum-utils
+- sudo yum-config-manager --add-repo DOCKER-EE-DOWNLOAD/docker-ee.repo
+- sudo yum makecache fast
+- sudo yum install docker-ee -y
+- sudo systemctl start docker
+- sudo systemctl enable docker
+- sudo usermod -aG docker nutanix
+- sudo echo nameser
+- sudo sh -c 'echo nameserver VM-NS > /etc/resolv.conf'
+final_message: "The DDC is finally up, after $UPTIME seconds"
